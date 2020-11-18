@@ -1,0 +1,50 @@
+<h2>Cars List</h2>
+<div class="container" align='right' style="margin-bottom: 25px">
+    <form (click)= "searchCar()" autocomplete="off">
+        <div class="form-group">
+            <input type='text' [(ngModel)]='keyword' name='keyword'>
+            <button class='search-button' type='submit'>search</button>
+        </div>
+    </form>
+</div>
+<div class="container" align='left' style="margin-bottom: 25px">
+    <form (click)= "filterCar()" autocomplete="off">
+        <div class="form-group">
+            <input type='text' [(ngModel)]='keyword' name='keyword' list='keyword'>
+            <datalist id="keyword">
+            <option>name</option>
+            <option>owner</option>
+            <option>color</option>
+            <option>model</option>
+            </datalist>
+            <button class='search-button' type='submit'>Filter</button>
+        </div>
+    </form>
+</div>
+<table class="table table-striped" style='margin-bottom:20px'>
+    <thead>
+        <tr>
+            <th> ID </th>
+            <th> Name </th>
+            <th> Model </th>
+            <th> Color </th>
+            <th> Owner </th>
+            <th> Action </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor = "let car of cars">
+            <td> {{ car.id }} </td>
+            <td> {{ car.name }} </td>
+            <td> {{ car.model }} </td>
+            <td> {{ car.color }} </td>
+            <td> {{ car.owner }} </td>
+            <td>
+                <button (click) = "updateCar(car.id)" class='btn btn-info'>Update</button>
+                <button (click) = "deleteCar(car.id)" class='btn btn-danger' style='margin-left: 10px'>Delete</button>
+                <button (click) = "carDetails(car.id)" class='btn btn-info' style='margin-left: 10px'>view</button>
+            </td>
+
+        </tr>
+    </tbody>
+</table>
